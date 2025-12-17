@@ -1,0 +1,112 @@
+.container {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.backLink {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.backLink:hover {
+    color: #000;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.imageWrapper {
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+}
+
+.imageWrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #333;
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+.features {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.features li {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.features li::before {
+    content: "✓";
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.addToCartButton {
+    flex: 1;
+    padding: 1.2rem;
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addToCartButton:hover {
+    background-color: #e6b400;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 199, 0, 0.3);
+}
