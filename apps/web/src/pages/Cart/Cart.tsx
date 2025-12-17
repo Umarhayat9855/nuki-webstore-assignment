@@ -32,13 +32,18 @@ export const Cart: React.FC = () => {
       setItems(res.data);
       refreshCart(); // Ensure global count is in sync
     } catch (error) {
-      console.error(error);
+      showToast('Failed to load cart', 'error');
     }
   };
 
   const removeFromCart = async (id: number) => {
-    await api.removeFromCart(id);
-    loadCart();
+    try {
+      await api.removeFromCart(id);
+      showToast('Item removed from cart', 'success');
+      loadCart();
+    } catch (error) {
+      showToast('Failed to remove item', 'error');
+    }
   };
 
   const total = items.reduce((sum, item) => sum + parseFloat(item.product.price) * item.quantity, 0);

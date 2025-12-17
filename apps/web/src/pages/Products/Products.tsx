@@ -21,6 +21,7 @@ export const Products: React.FC = () => {
   useEffect(() => {
     api.getProducts()
       .then((res) => setProducts(res.data))
+      .catch(() => showToast('Failed to load products', 'error'))
       .finally(() => setLoading(false));
   }, []);
 
