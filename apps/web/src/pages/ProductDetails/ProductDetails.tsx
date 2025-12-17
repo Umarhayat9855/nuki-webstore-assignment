@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { api } from '../../api/client';
 import { useCart } from '../../context/CartContext';
+import { useToast } from '../../context/ToastContext';
 import { Loader } from '../../components/Loader/Loader';
 import styles from './ProductDetails.module.css';
 
@@ -16,6 +17,7 @@ export const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const { addToCart } = useCart();
+  const { showToast } = useToast();
 
   useEffect(() => {
     // Fetch all products and filter client-side to find the requested product.
@@ -30,9 +32,9 @@ export const ProductDetails: React.FC = () => {
     if (!product) return;
     try {
       await addToCart(product.id, 1);
-      alert('Added to cart!');
+      showToast('Added to cart!', 'success');
     } catch (error) {
-      alert('Failed to add to cart');
+      showToast('Failed to add to cart', 'error');
     }
   };
 

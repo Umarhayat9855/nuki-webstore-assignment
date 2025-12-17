@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { api } from '../../api/client';
 import { Link } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
+import { useToast } from '../../context/ToastContext';
 import { Loader } from '../../components/Loader/Loader';
 import styles from './Products.module.css';
 
@@ -14,6 +15,7 @@ interface Product {
 export const Products: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const { showToast } = useToast();
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -25,9 +27,9 @@ export const Products: React.FC = () => {
   const handleAddToCart = async (productId: number) => {
     try {
       await addToCart(productId, 1);
-      alert('Added to cart!');
+      showToast('Added to cart!', 'success');
     } catch (error) {
-      alert('Failed to add to cart');
+      showToast('Failed to add to cart', 'error');
     }
   };
 

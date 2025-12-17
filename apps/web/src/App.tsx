@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
+import { ToastProvider } from './context/ToastContext';
 import { Login } from './pages/Login/Login';
 import { Products } from './pages/Products/Products';
 import { ProductDetails } from './pages/ProductDetails/ProductDetails';
@@ -21,31 +22,33 @@ const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 function App() {
   return (
     <AuthProvider>
-      <CartProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route element={<Layout />}>
-              <Route path="/products" element={
-                <PrivateRoute>
-                  <Products />
-                </PrivateRoute>
-              } />
-              <Route path="/products/:id" element={
-                <PrivateRoute>
-                  <ProductDetails />
-                </PrivateRoute>
-              } />
-              <Route path="/cart" element={
-                <PrivateRoute>
-                  <Cart />
-                </PrivateRoute>
-              } />
-              <Route path="/" element={<Navigate to="/products" />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </CartProvider>
+      <ToastProvider>
+        <CartProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route element={<Layout />}>
+                <Route path="/products" element={
+                  <PrivateRoute>
+                    <Products />
+                  </PrivateRoute>
+                } />
+                <Route path="/products/:id" element={
+                  <PrivateRoute>
+                    <ProductDetails />
+                  </PrivateRoute>
+                } />
+                <Route path="/cart" element={
+                  <PrivateRoute>
+                    <Cart />
+                  </PrivateRoute>
+                } />
+                <Route path="/" element={<Navigate to="/products" />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </CartProvider>
+      </ToastProvider>
     </AuthProvider>
   );
 }

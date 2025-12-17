@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './Cart.module.css';
 
 import { useCart } from '../../context/CartContext';
+import { useToast } from '../../context/ToastContext';
 
 interface CartItem {
   id: number;
@@ -19,6 +20,7 @@ interface CartItem {
 export const Cart: React.FC = () => {
   const [items, setItems] = useState<CartItem[]>([]);
   const { refreshCart } = useCart();
+  const { showToast } = useToast();
 
   useEffect(() => {
     loadCart();
@@ -86,7 +88,7 @@ export const Cart: React.FC = () => {
               <span>Total</span>
               <span>€{total.toFixed(2)}</span>
             </div>
-            <button className={styles.checkoutButton} onClick={() => alert('Checkout not implemented')}>
+            <button className={styles.checkoutButton} onClick={() => showToast('Checkout not implemented', 'info')}>
               Checkout
             </button>
           </div>

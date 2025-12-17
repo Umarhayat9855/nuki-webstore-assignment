@@ -1,0 +1,59 @@
+.toastContainer {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 10000;
+}
+
+.toast {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 300px;
+    animation: slideIn 0.3s ease-out forwards;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+}
+
+.toast.success {
+    border-left: 4px solid #ffc700;
+}
+
+.toast.error {
+    border-left: 4px solid #ff4444;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    margin-left: 16px;
+    padding: 0;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.closeButton:hover {
+    color: white;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
