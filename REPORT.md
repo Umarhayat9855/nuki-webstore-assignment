@@ -6,6 +6,14 @@ I chose a **monorepo structure** managed by npm workspaces to keep the frontend 
 - **Frontend**: React + Vite. I used **CSS Modules** for styling to ensure component-scoped styles and avoid global namespace pollution, keeping the design clean and maintainable.
 - **Pattern**: The **Controller-Service-Repository** pattern (simplified here to Controller-Prisma) was used in the backend to separate concerns. Controllers handle HTTP, while Prisma handles data access.
 
+## Development Process
+I followed an **iterative, test-driven approach** to ensure quality at each step:
+1. **Skeleton Phase**: Created the project structure, set up monorepo with npm workspaces, configured Prisma, and established the basic routing.
+2. **Functionality Phase**: Implemented core features (authentication, product listing, cart management) with a focus on working end-to-end flows.
+3. **Testing Phase**: Added comprehensive unit and integration tests using Jest (backend) and Vitest (frontend), achieving 93%+ coverage on critical paths.
+4. **CI/CD Phase**: Configured GitHub Actions to automate testing on every push, ensuring code quality and preventing regressions.
+5. **Polish Phase**: Added UX improvements (Toast notifications) and refined the design to align with Nuki's brand aesthetic.
+
 ## Authentication
 I implemented a simplified **JWT-based authentication** stored in **HTTP-only cookies**.
 - **Why?** Storing tokens in localStorage is vulnerable to XSS. HTTP-only cookies are more secure as they cannot be accessed by JavaScript.
@@ -34,7 +42,8 @@ I implemented a simplified **JWT-based authentication** stored in **HTTP-only co
 - **Test Coverage**: Achieved **93%+ coverage** on backend routes (auth, cart, products) using Jest with mocked Prisma client for isolation.
 
 ## Future Improvements
+- **UI Refinement**: With more time, I would further polish the interface to **exactly match** Nuki's website, including pixel-perfect spacing, animations, and micro-interactions. The current design captures the aesthetic direction but could benefit from additional refinement.
 - **Testing**: Adding end-to-end tests (e.g., Cypress or Playwright) would verify the full user flow from login to checkout.
 - **Security**: Implement CSRF tokens and rate limiting to prevent abuse.
-- **Real Product Images**: Replace placeholder images with actual Nuki product photography.
+- **Real Product Images**: Replace placeholder images with actual Nuki product photography from their CDN.
 
