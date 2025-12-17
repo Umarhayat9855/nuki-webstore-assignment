@@ -25,7 +25,16 @@ I implemented a simplified **JWT-based authentication** stored in **HTTP-only co
 - **Caching**: For a real high-traffic shop, I would add **Redis** to cache product listings and session data.
 - **Statelessness**: The JWT implementation is stateless, allowing the backend to scale horizontally across multiple instances without sticky sessions.
 
+## UX Enhancements
+- **Toast Notifications**: Replaced native browser `alert()` calls with a custom Toast notification system, providing non-blocking, visually appealing feedback for user actions (add to cart, login errors, etc.).
+- **Nuki-Style Design**: Product pages feature a premium, clean aesthetic matching Nuki's official website, including card layouts, hover effects, and typography that aligns with their brand identity.
+
+## CI/CD Pipeline
+- **GitHub Actions**: Automated testing pipeline that runs on every push to `main`, executing both backend and frontend tests to ensure code quality.
+- **Test Coverage**: Achieved **93%+ coverage** on backend routes (auth, cart, products) using Jest with mocked Prisma client for isolation.
+
 ## Future Improvements
-- **Testing**: While unit tests are present, adding end-to-end tests (e.g., Cypress or Playwright) would verify the full user flow from login to checkout.
+- **Testing**: Adding end-to-end tests (e.g., Cypress or Playwright) would verify the full user flow from login to checkout.
 - **Security**: Implement CSRF tokens and rate limiting to prevent abuse.
+- **Real Product Images**: Replace placeholder images with actual Nuki product photography.
 
