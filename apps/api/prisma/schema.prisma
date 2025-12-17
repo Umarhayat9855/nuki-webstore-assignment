@@ -16,11 +16,12 @@ model User {
 }
 
 model Product {
-  id        Int      @id @default(autoincrement())
-  name      String
-  price     Decimal
-  imageUrl  String
-  cartItems CartItem[]
+  id          Int        @id @default(autoincrement())
+  name        String
+  price       Decimal
+  description String?    @db.Text
+  imageUrl    String
+  cartItems   CartItem[]
 }
 
 model CartItem {
