@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: webshop-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: webshop
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: webshop-api
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: mysql://root:rootpassword@mysql:3306/webshop
+      PORT: 3000
+      JWT_SECRET: supersecretkey
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./apps/api:/app
+      - /app/node_modules
+
+volumes:
+  mysql_data:
